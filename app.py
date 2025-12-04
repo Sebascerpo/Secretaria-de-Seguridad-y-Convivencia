@@ -5,7 +5,7 @@ import os
 
 # Configuración de la página
 st.set_page_config(
-    page_title="Análisis Conflicto Armado - Medellín",
+    page_title="Personeria de Medellín | Análisis de Desplazamiento y Hechos Victimizantes",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -41,7 +41,7 @@ df_intermunicipal = df[df["origen_hecho"] == "INTERMUNICIPAL"].copy()
 df_intraurbano = df[df["origen_hecho"] == "INTRAURBANO"].copy()
 
 # Título principal
-st.title("Análisis de Conflicto Armado - Medellín")
+st.title("Análisis Conflicto Armado Interurbano e Intermunicipal")
 st.markdown("Datos de Desplazamiento y Hechos Victimizantes")
 st.markdown("---")
 
