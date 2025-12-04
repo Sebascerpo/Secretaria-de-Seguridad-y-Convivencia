@@ -1,0 +1,20 @@
+{
+    "admin": {
+        "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+        "nombre": "Administrador",
+        "rol": "admin",
+        "dashboards_permitidos": [
+            "all"
+        ]
+    },
+    "analista": {
+        "password": "9cd268397030111adacb4268e51f0dbbb0dbc8c59eb34f8f7d55f72d4c888349",
+        "nombre": "Analista",
+        "rol": "analista",
+        "dashboards_permitidos": [
+            "desplazamiento",
+            "hechos_victimizantes",
+            "demografico"
+        ]
+    }
+}
