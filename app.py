@@ -101,18 +101,18 @@ st.info(
 
 st.markdown("---")
 
-# Importar páginas
+# Importar módulos (renombrados para evitar que Streamlit los detecte como páginas)
 try:
-    from pages import datos_generales
-    from pages import analisis_municipios
-    from pages import hechos_victimizantes
-    from pages import analisis_demografico
-    from pages import grupos_responsables_todos
-    from pages import grupos_responsables_desplazamiento
+    from modules import datos_generales
+    from modules import analisis_municipios
+    from modules import hechos_victimizantes
+    from modules import analisis_demografico
+    from modules import grupos_responsables_todos
+    from modules import grupos_responsables_desplazamiento
 except ImportError as e:
     st.error(f"Error importando módulos: {e}")
     st.info(
-        "Asegúrate de que la carpeta 'pages' existe y contiene todos los archivos .py necesarios"
+        "Asegúrate de que la carpeta 'modules' existe y contiene todos los archivos .py necesarios"
     )
     st.stop()
 
