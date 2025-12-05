@@ -1,0 +1,106 @@
+{
+    "bMSURVmtF4Rdge2SoZAxvYM9x1my3DaEjnHfcr66m64": {
+        "username": "admin",
+        "user_data": {
+            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "nombre": "Administrador",
+            "rol": "admin",
+            "proyectos_permitidos": [
+                "all"
+            ]
+        },
+        "login_time": "2025-12-04T21:33:09.772459",
+        "expires_at": "2025-12-05T21:33:09.772442"
+    },
+    "ohr1vd_9TozJg-6xf6Cx0WIdNFnBgM-B5KprZdK5GiI": {
+        "username": "admin",
+        "user_data": {
+            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "nombre": "Administrador",
+            "rol": "admin",
+            "proyectos_permitidos": [
+                "all"
+            ]
+        },
+        "login_time": "2025-12-04T21:33:20.995387",
+        "expires_at": "2025-12-05T21:33:20.995371"
+    },
+    "6uTkG9ci0fi0b37ySU5ldQucKi0shsxMNHNJlFrN5Iw": {
+        "username": "admin",
+        "user_data": {
+            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "nombre": "Administrador",
+            "rol": "admin",
+            "proyectos_permitidos": [
+                "all"
+            ]
+        },
+        "login_time": "2025-12-04T21:35:57.999199",
+        "expires_at": "2025-12-05T21:35:57.999189"
+    },
+    "ngyG7DPGUmTzcobImEL17lNamaAR3287y93PcLkCGak": {
+        "username": "admin",
+        "user_data": {
+            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "nombre": "Administrador",
+            "rol": "admin",
+            "proyectos_permitidos": [
+                "all"
+            ]
+        },
+        "login_time": "2025-12-04T21:36:15.074112",
+        "expires_at": "2025-12-05T21:36:15.074093"
+    },
+    "ob0goAnZYiNILKKMwf74Z_xZC2XcggL9eOnSLg2XwOE": {
+        "username": "admin",
+        "user_data": {
+            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "nombre": "Administrador",
+            "rol": "admin",
+            "proyectos_permitidos": [
+                "all"
+            ]
+        },
+        "login_time": "2025-12-04T21:37:06.970633",
+        "expires_at": "2025-12-05T21:37:06.970619"
+    },
+    "f1BeZV6ca_2WtAi3hhJk24rZ2Vveu1w8GspqBrBAcDs": {
+        "username": "admin",
+        "user_data": {
+            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "nombre": "Administrador",
+            "rol": "admin",
+            "proyectos_permitidos": [
+                "all"
+            ]
+        },
+        "login_time": "2025-12-04T21:40:24.167878",
+        "expires_at": "2025-12-05T21:40:24.167862"
+    },
+    "dNr6ZRLa8WXYP-1t06pe4AZ8YrtylzLMTffaE8PjOII": {
+        "username": "admin",
+        "user_data": {
+            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "nombre": "Administrador",
+            "rol": "admin",
+            "proyectos_permitidos": [
+                "all"
+            ]
+        },
+        "login_time": "2025-12-04T21:58:15.951254",
+        "expires_at": "2025-12-05T21:58:15.951223"
+    },
+    "WPohCmFFRnXW1pk-pOwYRbX56uz8aV7eZg0DcAaXGv0": {
+        "username": "admin",
+        "user_data": {
+            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "nombre": "Administrador",
+            "rol": "admin",
+            "proyectos_permitidos": [
+                "all"
+            ]
+        },
+        "login_time": "2025-12-04T22:35:09.419329",
+        "expires_at": "2025-12-05T22:35:09.419312"
+    }
+}
