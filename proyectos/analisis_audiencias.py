@@ -68,7 +68,14 @@ def normalize_crime_type(delito):
 def load_data(filepath):
     """Load and process the CSV file with comprehensive data cleaning"""
     try:
-        df = pd.read_csv(filepath)
+        # Try reading with different encodings for deployment compatibility
+        try:
+            df = pd.read_csv(filepath, encoding='utf-8')
+        except UnicodeDecodeError:
+            try:
+                df = pd.read_csv(filepath, encoding='latin-1')
+            except Exception:
+                df = pd.read_csv(filepath, encoding='utf-8', errors='ignore')
         
         # Clean HTML tags from observaciones
         if 'observaciones' in df.columns:
@@ -133,9 +140,12 @@ def export_to_excel(df_dict, filename="reporte_audiencias.xlsx"):
 def run(project_info):
     """Main function to run the audiencias analysis project"""
     
-    # Configuration
+    # Configuration - use same pattern as analisis_radicados.py
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    data_path = os.path.join(current_dir, "..", project_info.get("archivo_datos", "data/informacion-penal.csv"))
+    # Extract filename from archivo_datos path (e.g., "data/informacion-penal.csv" -> "informacion-penal.csv")
+    archivo_datos = project_info.get("archivo_datos", "data/informacion-penal.csv")
+    filename = os.path.basename(archivo_datos) if "/" in archivo_datos else archivo_datos
+    data_path = os.path.join(current_dir, "..", "data", filename)
     
     # Header
     st.title("Análisis Integral de Audiencias y Diligencias")
@@ -144,13 +154,38 @@ def run(project_info):
     
     # Load data
     if not os.path.exists(data_path):
-        st.error(f"No se encontró el archivo de datos en: {data_path}")
-        return
+        # Try alternative path (direct from root)
+        alt_path = archivo_datos
+        if os.path.exists(alt_path):
+            data_path = alt_path
+        else:
+            st.error(f"No se encontró el archivo de datos en: {data_path}")
+            st.info(f"También se intentó: {alt_path}")
+            st.info(f"Directorio actual: {os.getcwd()}")
+            return
     
-    df = load_data(data_path)
+    # Load data with error handling
+    try:
+        df = load_data(data_path)
+    except Exception as e:
+        st.error(f"Error al cargar los datos: {str(e)}")
+        st.info("Intenta recargar la página o contacta al administrador del sistema.")
+        import traceback
+        with st.expander("Detalles técnicos del error"):
+            st.code(traceback.format_exc())
+        return
     
     if df.empty:
         st.warning("El archivo de datos está vacío o tiene un formato no válido.")
+        st.info(f"Archivo cargado desde: {data_path}")
+        return
+    
+    # Verify required columns exist
+    required_columns = ['fecha_audiencia', 'tipo_proceso', 'delito', 'delegado']
+    missing_columns = [col for col in required_columns if col not in df.columns]
+    if missing_columns:
+        st.error(f"El archivo de datos no contiene las columnas requeridas: {', '.join(missing_columns)}")
+        st.info(f"Columnas disponibles: {', '.join(df.columns.tolist())}")
         return
     
     # FILTROS GLOBALES (Sidebar)
