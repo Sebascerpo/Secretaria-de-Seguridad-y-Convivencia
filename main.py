@@ -204,6 +204,13 @@ def get_available_projects():
             "color": "#dc2626",
             "archivo_datos": "data/datos.csv",
         },
+        "analisis_radicados": {
+            "nombre": "Análisis de Radicados",
+            "descripcion": "Análisis completo de radicados ingresados a la entidad",
+            "icon": "",
+            "color": "#059669",
+            "archivo_datos": "data/radicados.csv",
+        },
         # Agrega más proyectos aquí
         # "otro_proyecto": {
         #     "nombre": "Otro Proyecto",
