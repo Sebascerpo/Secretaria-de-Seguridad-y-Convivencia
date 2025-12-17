@@ -11,5 +11,31 @@
         },
         "login_time": "2025-12-16T21:55:30.514488",
         "expires_at": "2025-12-17T21:55:30.514479"
+    },
+    "tZ3KyC0KwZuJeAxUM557idMZLBgP7ubn_0vE-CYiwOw": {
+        "username": "admin",
+        "user_data": {
+            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "nombre": "Administrador",
+            "rol": "admin",
+            "proyectos_permitidos": [
+                "all"
+            ]
+        },
+        "login_time": "2025-12-17T11:45:00.515478",
+        "expires_at": "2025-12-18T11:45:00.515470"
+    },
+    "cTQA_QkoCvuzbbWFkEvAqu5xuq79sciZH36YAbp88_E": {
+        "username": "admin",
+        "user_data": {
+            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "nombre": "Administrador",
+            "rol": "admin",
+            "proyectos_permitidos": [
+                "all"
+            ]
+        },
+        "login_time": "2025-12-17T11:51:19.867233",
+        "expires_at": "2025-12-18T11:51:19.867217"
     }
 }

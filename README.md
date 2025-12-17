@@ -1,1 +1,1 @@
-source .venv/bin/activate && streamlit run main.py
+source .venv/bin/activate && pip install -r requirements.txt && streamlit run main.py

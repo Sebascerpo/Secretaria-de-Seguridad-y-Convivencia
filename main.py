@@ -211,6 +211,13 @@ def get_available_projects():
             "color": "#059669",
             "archivo_datos": "data/radicados.csv",
         },
+        "analisis_audiencias": {
+            "nombre": "Análisis de Audiencias y Diligencias",
+            "descripcion": "Análisis integral de audiencias atendidas por delegados: conocimiento y control de garantías",
+            "icon": "",
+            "color": "#7c3aed",
+            "archivo_datos": "data/informacion-penal.csv",
+        },
         # Agrega más proyectos aquí
         # "otro_proyecto": {
         #     "nombre": "Otro Proyecto",
