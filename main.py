@@ -205,11 +205,11 @@ def get_available_projects():
             "archivo_datos": "data/datos.csv",
         },
         "analisis_radicados": {
-            "nombre": "Análisis de Radicados",
-            "descripcion": "Análisis completo de radicados ingresados a la entidad",
+            "nombre": "Análisis de Gestión Documental",
+            "descripcion": "Análisis integral de flujo y gestión de documentos: enrutamiento, cambios de destino y eficiencia",
             "icon": "",
             "color": "#059669",
-            "archivo_datos": "data/radicados.csv",
+            "archivo_datos": "data/gestion-documental.csv",
         },
         "analisis_audiencias": {
             "nombre": "Análisis de Audiencias y Diligencias",
