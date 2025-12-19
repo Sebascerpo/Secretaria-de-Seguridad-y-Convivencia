@@ -218,6 +218,13 @@ def get_available_projects():
             "color": "#7c3aed",
             "archivo_datos": "data/informacion-penal.csv",
         },
+        "analisis_conciliacion": {
+            "nombre": "Análisis de Conciliación",
+            "descripcion": "Análisis de procesos de conciliación extrajudicial: tasas de éxito, eficiencia y desempeño",
+            "icon": "",
+            "color": "#f59e0b",
+            "archivo_datos": "data/conciliacion.csv",
+        },
         # Agrega más proyectos aquí
         # "otro_proyecto": {
         #     "nombre": "Otro Proyecto",
