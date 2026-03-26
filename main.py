@@ -78,14 +78,14 @@ def create_session(username, user_data):
     sessions = load_sessions()
     token = secrets.token_urlsafe(32)
     expires_at = datetime.now() + timedelta(hours=SESSION_DURATION_HOURS)
-    
+
     sessions[token] = {
         "username": username,
         "user_data": user_data,
         "login_time": datetime.now().isoformat(),
         "expires_at": expires_at.isoformat(),
     }
-    
+
     save_sessions(sessions)
     return token
 
@@ -93,20 +93,20 @@ def create_session(username, user_data):
 def get_session(token):
     """Obtiene la sesión asociada a un token si es válida"""
     sessions = load_sessions()
-    
+
     if token not in sessions:
         return None
-    
+
     session = sessions[token]
     expires_at = datetime.fromisoformat(session["expires_at"])
-    
+
     # Verificar si la sesión expiró
     if datetime.now() > expires_at:
         # Eliminar sesión expirada
         del sessions[token]
         save_sessions(sessions)
         return None
-    
+
     return session
 
 
@@ -123,15 +123,15 @@ def cleanup_expired_sessions():
     sessions = load_sessions()
     now = datetime.now()
     expired_tokens = []
-    
+
     for token, session in sessions.items():
         expires_at = datetime.fromisoformat(session["expires_at"])
         if now > expires_at:
             expired_tokens.append(token)
-    
+
     for token in expired_tokens:
         del sessions[token]
-    
+
     if expired_tokens:
         save_sessions(sessions)
 
@@ -204,35 +204,28 @@ def get_available_projects():
             "color": "#dc2626",
             "archivo_datos": "data/datos.csv",
         },
-        "analisis_radicados": {
-            "nombre": "Análisis de Gestión Documental",
-            "descripcion": "Análisis integral de flujo y gestión de documentos: enrutamiento, cambios de destino y eficiencia",
-            "icon": "",
-            "color": "#059669",
-            "archivo_datos": "data/gestion-documental.csv",
-        },
-        "analisis_audiencias": {
-            "nombre": "Análisis de Audiencias y Diligencias",
-            "descripcion": "Análisis integral de audiencias atendidas por delegados: conocimiento y control de garantías",
-            "icon": "",
-            "color": "#7c3aed",
-            "archivo_datos": "data/informacion-penal.csv",
-        },
-        "analisis_conciliacion": {
-            "nombre": "Análisis de Conciliación",
-            "descripcion": "Análisis de procesos de conciliación extrajudicial: tasas de éxito, eficiencia y desempeño",
-            "icon": "",
-            "color": "#f59e0b",
-            "archivo_datos": "data/conciliacion.csv",
-        },
-        # Agrega más proyectos aquí
-        # "otro_proyecto": {
-        #     "nombre": "Otro Proyecto",
-        #     "descripcion": "Descripción del proyecto",
+        # "analisis_radicados": {
+        #     "nombre": "Análisis de Gestión Documental",
+        #     "descripcion": "Análisis integral de flujo y gestión de documentos: enrutamiento, cambios de destino y eficiencia",
         #     "icon": "",
         #     "color": "#059669",
-        #     "archivo_datos": "data/otros_datos.csv",
+        #     "archivo_datos": "data/gestion-documental.csv",
         # },
+        # "analisis_audiencias": {
+        #     "nombre": "Análisis de Audiencias y Diligencias",
+        #     "descripcion": "Análisis integral de audiencias atendidas por delegados: conocimiento y control de garantías",
+        #     "icon": "",
+        #     "color": "#7c3aed",
+        #     "archivo_datos": "data/informacion-penal.csv",
+        # },
+        # "analisis_conciliacion": {
+        #     "nombre": "Análisis de Conciliación",
+        #     "descripcion": "Análisis de procesos de conciliación extrajudicial: tasas de éxito, eficiencia y desempeño",
+        #     "icon": "",
+        #     "color": "#f59e0b",
+        #     "archivo_datos": "data/conciliaciones2.csv",
+        # },
+        # Agrega más proyectos aquí
     }
 
     # Detectar archivos .py en la carpeta proyectos/
@@ -241,6 +234,10 @@ def get_available_projects():
         for filename in os.listdir(proyectos_dir):
             if filename.endswith(".py") and filename != "__init__.py":
                 project_id = filename[:-3]  # Quitar .py
+
+                # Solo permitir conflicto_armado por ahora
+                if project_id != "conflicto_armado":
+                    continue
 
                 # Si el proyecto tiene configuración, usarla
                 if project_id in projects_config:
@@ -270,7 +267,10 @@ def project_selector():
 
         if st.button("Cerrar Sesión", use_container_width=True):
             # Eliminar sesión persistente
-            token = st.session_state.get("session_token") or st.query_params.get("token", [None])[0]
+            token = (
+                st.session_state.get("session_token")
+                or st.query_params.get("token", [None])[0]
+            )
             if token:
                 delete_session(token)
             # Limpiar query params
@@ -364,7 +364,10 @@ def run_selected_project():
 
         if st.button("Cerrar Sesión", use_container_width=True):
             # Eliminar sesión persistente
-            token = st.session_state.get("session_token") or st.query_params.get("token", [None])[0]
+            token = (
+                st.session_state.get("session_token")
+                or st.query_params.get("token", [None])[0]
+            )
             if token:
                 delete_session(token)
             # Limpiar query params
@@ -397,12 +400,12 @@ def run_selected_project():
 def main():
     # Limpiar sesiones expiradas
     cleanup_expired_sessions()
-    
+
     # PRIORIDAD 1: Obtener token de query params (persiste en recargas de página)
     # Esto es crítico porque session_state se pierde al recargar la página
     query_params = st.query_params
     token_from_url = None
-    
+
     # Manejar query params - Streamlit puede devolver lista o string
     try:
         if "token" in query_params:
@@ -413,13 +416,13 @@ def main():
                 token_from_url = token_value
     except Exception:
         token_from_url = None
-    
+
     # PRIORIDAD 2: Obtener token de session state (solo válido durante la sesión actual)
     token_from_session = st.session_state.get("session_token")
-    
+
     # Usar token de URL si existe (tiene prioridad porque persiste en recargas), sino del session state
     token = token_from_url or token_from_session
-    
+
     # Si encontramos un token (de URL o session), intentar restaurar la sesión
     if token:
         session = get_session(token)
@@ -428,13 +431,25 @@ def main():
             st.session_state["authenticated"] = True
             st.session_state["username"] = session["username"]
             st.session_state["user_data"] = session["user_data"]
-            st.session_state["login_time"] = datetime.fromisoformat(session["login_time"])
+            st.session_state["login_time"] = datetime.fromisoformat(
+                session["login_time"]
+            )
             st.session_state["session_token"] = token
-            
+
             # CRÍTICO: Asegurar que el token esté SIEMPRE en query params para persistencia
             # Esto garantiza que al recargar la página, el token esté disponible
             current_url_token = query_params.get("token")
-            if not current_url_token or (isinstance(current_url_token, list) and token not in current_url_token) or (not isinstance(current_url_token, list) and current_url_token != token):
+            if (
+                not current_url_token
+                or (
+                    isinstance(current_url_token, list)
+                    and token not in current_url_token
+                )
+                or (
+                    not isinstance(current_url_token, list)
+                    and current_url_token != token
+                )
+            ):
                 st.query_params["token"] = token
         else:
             # Sesión expirada o inválida - limpiar todo
@@ -444,7 +459,7 @@ def main():
                 del st.session_state["session_token"]
             if "token" in query_params:
                 del st.query_params["token"]
-    
+
     # Si ya estamos autenticados, asegurar que el token esté en la URL
     if st.session_state.get("authenticated") and st.session_state.get("session_token"):
         current_token = st.session_state["session_token"]
@@ -458,13 +473,13 @@ def main():
                 needs_update = True
         elif current_url_token != current_token:
             needs_update = True
-        
+
         if needs_update:
             st.query_params["token"] = current_token
-    
+
     # Verificar autenticación DESPUÉS de intentar restaurar la sesión
     is_authenticated = st.session_state.get("authenticated", False)
-    
+
     if not is_authenticated:
         login_page()
     else:

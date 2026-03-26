@@ -8,95 +8,61 @@ def render(df, tipo_texto, ubicacion_texto):
     st.caption(f"Ubicación: {ubicacion_texto}")
     st.caption("Muestra: Todos los hechos victimizantes registrados")
 
-    # Separar por años
-    df_2024 = df[df["ano_declara"] == 2024].copy()
-    df_2025 = df[df["ano_declara"] == 2025].copy()
+    # Identificar años disponibles
+    years = sorted(df["ano_declara"].unique(), reverse=False)
+    
+    # Colores para los años
+    colors = ["#dc2626", "#ea580c", "#f97316", "#fbbf24"]
 
-    total_personas_2024 = len(df_2024)
-    total_personas_2025 = len(df_2025)
+    # Crear columnas dinámicamente
+    cols = st.columns(len(years))
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.subheader("Hechos Victimizantes 2024")
-        st.caption(
-            f"Filtro: TODOS LOS MOTIVOS | Total personas: {total_personas_2024:,}"
-        )
-
-        hechos_2024 = df_2024["hecho_victimizante"].value_counts().head(20)
-        hechos_2024_df = pd.DataFrame(
-            {
-                "Hecho": hechos_2024.index,
-                "Cantidad": hechos_2024.values,
-                "Porcentaje": (hechos_2024.values / total_personas_2024 * 100).round(1),
-            }
-        )
-
-        fig = go.Figure()
-        fig.add_trace(
-            go.Bar(
-                y=hechos_2024_df["Hecho"],
-                x=hechos_2024_df["Cantidad"],
-                orientation="h",
-                text=[
-                    f"{val:,}<br>({pct}%)"
-                    for val, pct in zip(
-                        hechos_2024_df["Cantidad"], hechos_2024_df["Porcentaje"]
-                    )
-                ],
-                textposition="outside",
-                marker_color="#dc2626",
-                hovertemplate="%{y}<br>Cantidad: %{x:,}<extra></extra>",
+    for i, year in enumerate(years):
+        with cols[i]:
+            st.subheader(f"Hechos Victimizantes {year}")
+            
+            df_year = df[df["ano_declara"] == year].copy()
+            total_personas_year = len(df_year)
+            
+            st.caption(
+                f"Filtro: TODOS LOS MOTIVOS | Total personas: {total_personas_year:,}"
             )
-        )
-        fig.update_layout(
-            height=700,
-            showlegend=False,
-            yaxis={"categoryorder": "total ascending"},
-            xaxis_title="Cantidad de Personas",
-            margin=dict(r=150, l=200, t=30, b=50),
-        )
-        st.plotly_chart(fig, use_container_width=True)
-        st.dataframe(hechos_2024_df, use_container_width=True, hide_index=True)
 
-    with col2:
-        st.subheader("Hechos Victimizantes 2025")
-        st.caption(
-            f"Filtro: TODOS LOS MOTIVOS | Total personas: {total_personas_2025:,}"
-        )
+            if total_personas_year > 0:
+                hechos_year = df_year["hecho_victimizante"].value_counts().head(20)
+                hechos_year_df = pd.DataFrame(
+                    {
+                        "Hecho": hechos_year.index,
+                        "Cantidad": hechos_year.values,
+                        "Porcentaje": (hechos_year.values / total_personas_year * 100).round(1),
+                    }
+                )
 
-        hechos_2025 = df_2025["hecho_victimizante"].value_counts().head(20)
-        hechos_2025_df = pd.DataFrame(
-            {
-                "Hecho": hechos_2025.index,
-                "Cantidad": hechos_2025.values,
-                "Porcentaje": (hechos_2025.values / total_personas_2025 * 100).round(1),
-            }
-        )
-
-        fig = go.Figure()
-        fig.add_trace(
-            go.Bar(
-                y=hechos_2025_df["Hecho"],
-                x=hechos_2025_df["Cantidad"],
-                orientation="h",
-                text=[
-                    f"{val:,}<br>({pct}%)"
-                    for val, pct in zip(
-                        hechos_2025_df["Cantidad"], hechos_2025_df["Porcentaje"]
+                fig = go.Figure()
+                fig.add_trace(
+                    go.Bar(
+                        y=hechos_year_df["Hecho"],
+                        x=hechos_year_df["Cantidad"],
+                        orientation="h",
+                        text=[
+                            f"{val:,}<br>({pct}%)"
+                            for val, pct in zip(
+                                hechos_year_df["Cantidad"], hechos_year_df["Porcentaje"]
+                            )
+                        ],
+                        textposition="outside",
+                        marker_color=colors[i % len(colors)],
+                        hovertemplate="%{y}<br>Cantidad: %{x:,}<extra></extra>",
                     )
-                ],
-                textposition="outside",
-                marker_color="#ea580c",
-                hovertemplate="%{y}<br>Cantidad: %{x:,}<extra></extra>",
-            )
-        )
-        fig.update_layout(
-            height=700,
-            showlegend=False,
-            yaxis={"categoryorder": "total ascending"},
-            xaxis_title="Cantidad de Personas",
-            margin=dict(r=150, l=200, t=30, b=50),
-        )
-        st.plotly_chart(fig, use_container_width=True)
-        st.dataframe(hechos_2025_df, use_container_width=True, hide_index=True)
+                )
+                fig.update_layout(
+                    height=700,
+                    showlegend=False,
+                    yaxis={"categoryorder": "total ascending"},
+                    xaxis_title="Cantidad de Personas",
+                    margin=dict(r=100, l=150, t=30, b=50),
+                )
+                st.plotly_chart(fig, use_container_width=True)
+                st.dataframe(hechos_year_df, use_container_width=True, hide_index=True)
+            else:
+                st.info(f"No hay datos para el año {year}")

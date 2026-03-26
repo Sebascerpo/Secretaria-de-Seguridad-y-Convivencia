@@ -1,5 +1,5 @@
 {
-    "HmZnMeZZD2XveBlk8cbExG3UsxzTieVdDwF0ZFco7JE": {
+    "wNmqwQP5rTmm6f-L1eCFF8b3dDXRYnV-9xE8wOek1Sc": {
         "username": "admin",
         "user_data": {
             "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
@@ -9,10 +9,10 @@
                 "all"
             ]
         },
-        "login_time": "2025-12-17T14:47:51.698819",
-        "expires_at": "2025-12-18T14:47:51.698811"
+        "login_time": "2026-03-26T10:49:08.173560",
+        "expires_at": "2026-03-27T10:49:08.173544"
     },
-    "PPZ4nwymYWPIdTfm6S37jzAN20euQmg4JyNhx8-4G9c": {
+    "QtrQhAHz7di-R9W2xXPt_FXnS62_7S_K7mByBRHWG6k": {
         "username": "admin",
         "user_data": {
             "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
@@ -22,10 +22,10 @@
                 "all"
             ]
         },
-        "login_time": "2025-12-17T14:49:50.802409",
-        "expires_at": "2025-12-18T14:49:50.802404"
+        "login_time": "2026-03-26T11:28:38.881248",
+        "expires_at": "2026-03-27T11:28:38.881234"
     },
-    "GsKeWvqYq6r9KMf14a6rmPHqWE1-6wkZ5EcRmkj5wfc": {
+    "MqlHTe2VUqSz5uYVpI0V_nfCKI0MG9_bfFKDZG4wma8": {
         "username": "admin",
         "user_data": {
             "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
@@ -35,46 +35,7 @@
                 "all"
             ]
         },
-        "login_time": "2025-12-17T14:53:42.461596",
-        "expires_at": "2025-12-18T14:53:42.461578"
-    },
-    "ZpkbXIpB1V0pjVqk4UBulupmmkAVnGwS2qPBT3es8Fg": {
-        "username": "admin",
-        "user_data": {
-            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
-            "nombre": "Administrador",
-            "rol": "admin",
-            "proyectos_permitidos": [
-                "all"
-            ]
-        },
-        "login_time": "2025-12-17T15:08:50.259251",
-        "expires_at": "2025-12-18T15:08:50.259243"
-    },
-    "SqjMJpNzX1qXi88bv7xBeQwqRw3i76MymuXAB32yPjg": {
-        "username": "admin",
-        "user_data": {
-            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
-            "nombre": "Administrador",
-            "rol": "admin",
-            "proyectos_permitidos": [
-                "all"
-            ]
-        },
-        "login_time": "2025-12-17T15:11:38.936476",
-        "expires_at": "2025-12-18T15:11:38.936468"
-    },
-    "B5yh798OJcFs8Cy7gq4Tmm7rERQ1HnHc5Ue4blP9WEM": {
-        "username": "admin",
-        "user_data": {
-            "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
-            "nombre": "Administrador",
-            "rol": "admin",
-            "proyectos_permitidos": [
-                "all"
-            ]
-        },
-        "login_time": "2025-12-18T13:47:21.343920",
-        "expires_at": "2025-12-19T13:47:21.343906"
+        "login_time": "2026-03-26T11:37:33.716543",
+        "expires_at": "2026-03-27T11:37:33.716526"
     }
 }

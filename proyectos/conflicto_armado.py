@@ -48,19 +48,19 @@ def run(project_info):
 
         st.markdown("---")
 
+        # Mostrar estadísticas por año dinámicamente
         st.write("**Intermunicipal por Año**")
-        inter_2024 = len(df_intermunicipal[df_intermunicipal["ano_declara"] == 2024])
-        inter_2025 = len(df_intermunicipal[df_intermunicipal["ano_declara"] == 2025])
-        st.write(f"2024: {inter_2024:,}")
-        st.write(f"2025: {inter_2025:,}")
+        years = sorted(df["ano_declara"].unique(), reverse=True)
+        for year in years:
+            count = len(df_intermunicipal[df_intermunicipal["ano_declara"] == year])
+            st.write(f"{year}: {count:,}")
 
         st.markdown("---")
 
         st.write("**Intraurbano por Año**")
-        intra_2024 = len(df_intraurbano[df_intraurbano["ano_declara"] == 2024])
-        intra_2025 = len(df_intraurbano[df_intraurbano["ano_declara"] == 2025])
-        st.write(f"2024: {intra_2024:,}")
-        st.write(f"2025: {intra_2025:,}")
+        for year in years:
+            count = len(df_intraurbano[df_intraurbano["ano_declara"] == year])
+            st.write(f"{year}: {count:,}")
 
         st.markdown("---")
 
