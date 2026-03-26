@@ -12,6 +12,10 @@ def render(df, tipo_texto, ubicacion_texto):
 
     # Identificar años disponibles
     years = sorted(df["ano_declara"].unique(), reverse=False)
+    
+    if not years:
+        st.info(f"No hay datos registrados para {tipo_texto} en el dataset actual.")
+        return
 
     # Calcular totales - TODOS LOS MOTIVOS
     metrics_data = {}

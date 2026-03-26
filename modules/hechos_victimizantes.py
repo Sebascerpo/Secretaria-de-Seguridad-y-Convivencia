@@ -11,6 +11,10 @@ def render(df, tipo_texto, ubicacion_texto):
     # Identificar años disponibles
     years = sorted(df["ano_declara"].unique(), reverse=False)
     
+    if not years:
+        st.info(f"No hay datos registrados para {tipo_texto} en el dataset actual.")
+        return
+    
     # Colores para los años
     colors = ["#dc2626", "#ea580c", "#f97316", "#fbbf24"]
 

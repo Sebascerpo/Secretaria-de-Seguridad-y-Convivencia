@@ -34,7 +34,8 @@ def run(project_info):
 
     # Filtrar datos por origen
     df_intermunicipal = df[df["origen_hecho"] == "INTERMUNICIPAL"].copy()
-    df_intraurbano = df[df["origen_hecho"] == "INTRAURBANO"].copy()
+    # Para Intraurbano, usamos municipio_procede == 'Medellin' ya que el valor 'INTRAURBANO' no existe en la columna origen_hecho
+    df_intraurbano = df[df["municipio_procede"].str.upper() == "MEDELLIN"].copy()
 
     # Sidebar con información general
     with st.sidebar:
